@@ -1,6 +1,6 @@
 from application.app import app
 from flask import request
-from application.models import WorkItem, db, SubTask, User
+from application.models import db, User
 from sqlalchemy.exc import IntegrityError
 from flask_jwt import jwt_required, JWT, current_identity
 
@@ -31,7 +31,7 @@ def home():
 
 @app.route("/signup", methods=["POST"])
 def signup():
-    params = request.authorization
+    params = request.json
     try:
         user = User(**params)
         db.session.add(user)
@@ -42,6 +42,7 @@ def signup():
 
 # Write your API endpoints here
 @app.route("/movie", methods=["Get"])
+@jwt_required()
 def get_movie_list():
     print(request.args)
     country = request.args["countrylist"]
@@ -72,6 +73,7 @@ def get_movie_list():
 # l
 
 @app.route("/series", methods=["Get"])
+@jwt_required()
 def get_series_list():
     print(request.args)
     country = request.args["countrylist"]

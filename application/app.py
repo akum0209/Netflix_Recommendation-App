@@ -4,8 +4,7 @@ from dotenv import load_dotenv
 from datetime import timedelta
 
 import os
-
-# load_dotenv()
+load_dotenv()
 db_url = os.environ["DATABASE_URL"]
 db_url = db_url.replace('postgres', 'postgresql', 1)
 

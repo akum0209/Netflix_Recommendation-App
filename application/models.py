@@ -61,6 +61,5 @@ class User(db.Model):
     password = db.Column(db.String(120))
 
 
-country()
-genre()
-
+db.create_all()
+db.init_app(app)
